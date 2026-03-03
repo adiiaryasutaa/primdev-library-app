@@ -1,0 +1,446 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: API Test
+meta:
+  id: wrk_2d2e79b0068b46b086b5ffb93ad92247
+  created: 1772520961462
+  modified: 1772533918681
+  description: ""
+collection:
+  - url: "{{ API_ENDPOINT }}/books"
+    name: Get all books
+    meta:
+      id: req_da4eff0501244bca8eada76d59cf39ac
+      created: 1772520961467
+      modified: 1772521112886
+      isPrivate: false
+      description: ""
+      sortKey: -1772520961467
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/books/1"
+    name: Get a book
+    meta:
+      id: req_60472f1677fb43e18eccabe66cf5f291
+      created: 1772521539571
+      modified: 1772530143720
+      isPrivate: false
+      description: ""
+      sortKey: -1772521539571
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/books"
+    name: Create a book
+    meta:
+      id: req_ad7842afd5eb400b8967d289fa1578a0
+      created: 1772521560741
+      modified: 1772529816363
+      isPrivate: false
+      description: ""
+      sortKey: -1772521560741
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"title": "Cara Menjadi Ormawa Terbaik Seperti HIPMI PT",
+        	"author": "Kak Siva",
+        	"year": 2004
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/books/1"
+    name: Update a book
+    meta:
+      id: req_94e6035d34924016a85c1c8850dfecde
+      created: 1772523363459
+      modified: 1772530167489
+      isPrivate: false
+      description: ""
+      sortKey: -1772523363459
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"author": "Kak Siva & Gung Adi"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/books/2"
+    name: Delete a book
+    meta:
+      id: req_fab7eec867b7442d9a551c761b38dc75
+      created: 1772523449083
+      modified: 1772530431791
+      isPrivate: false
+      description: ""
+      sortKey: -1772523449083
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/admins"
+    name: Get all admins
+    meta:
+      id: req_35af7e1589f34da99ba6f684e7b750de
+      created: 1772533355694
+      modified: 1772533362087
+      isPrivate: false
+      description: ""
+      sortKey: -1772056355551.5
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/admins/1"
+    name: Get a admin
+    meta:
+      id: req_6938fcbbb9764deda0b440b1e946e8bc
+      created: 1772533370187
+      modified: 1772533752399
+      isPrivate: false
+      description: ""
+      sortKey: -1772521250519
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/admins"
+    name: Create a admin
+    meta:
+      id: req_e8044553868e41ad856b1c669fd8e5db
+      created: 1772533377241
+      modified: 1772533530745
+      isPrivate: false
+      description: ""
+      sortKey: -1772521550156
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Danuartha",
+        	"email": "danuartha@gmail.com",
+        	"password": "sahabathitam"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/admins/1"
+    name: Update a admin
+    meta:
+      id: req_0932a10f933d4170be7e147740121103
+      created: 1772533606411
+      modified: 1772533629087
+      isPrivate: false
+      description: ""
+      sortKey: -1772522462100
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Danu Selem"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/admins/1"
+    name: Delete a admin
+    meta:
+      id: req_8096e1dfac134b14bf8b8ac506040987
+      created: 1772533640473
+      modified: 1772533645472
+      isPrivate: false
+      description: ""
+      sortKey: -1772523406271
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/transactions"
+    name: Get all transactions
+    meta:
+      id: req_730394b568a64f83876319f39b4ce6e3
+      created: 1772533675634
+      modified: 1772533679472
+      isPrivate: false
+      description: ""
+      sortKey: -1771824052593.75
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/transaction/2"
+    name: Delete a transaction
+    meta:
+      id: req_b08cb911d84d459b8a1ffb21f597c316
+      created: 1772533694938
+      modified: 1772533698275
+      isPrivate: false
+      description: ""
+      sortKey: -1772523427677
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/transactions/1"
+    name: Update a transaction
+    meta:
+      id: req_a1879951cb144701978a7d35688f21ca
+      created: 1772533705802
+      modified: 1772533710980
+      isPrivate: false
+      description: ""
+      sortKey: -1772522912779.5
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"author": "Kak Siva & Gung Adi"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/transctions"
+    name: Create a transaction
+    meta:
+      id: req_121b722992dd4a59a8279e48dd585d2e
+      created: 1772533719518
+      modified: 1772533786847
+      isPrivate: false
+      description: ""
+      sortKey: -1772521555448.5
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"title": "Cara Menjadi Ormawa Terbaik Seperti HIPMI PT",
+        	"author": "Kak Siva",
+        	"year": 2004
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/transaction/1"
+    name: Get a transaction
+    meta:
+      id: req_4126360eee1f47218674acbeb42fe225
+      created: 1772533729015
+      modified: 1772533762663
+      isPrivate: false
+      description: ""
+      sortKey: -1772521395045
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ API_ENDPOINT }}/transactions"
+    name: Get all transctions
+    meta:
+      id: req_ee549746ff55406f8a99f9aec05683d7
+      created: 1772533735519
+      modified: 1772533739769
+      isPrivate: false
+      description: ""
+      sortKey: -1772288658509.25
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_a1b32e945a245abe6e3bf355106ed57b0aa0c585
+    created: 1772520961464
+    modified: 1772520961464
+environments:
+  name: Base Environment
+  meta:
+    id: env_a1b32e945a245abe6e3bf355106ed57b0aa0c585
+    created: 1772520961464
+    modified: 1772521045690
+    isPrivate: false
+  data:
+    API_ENDPOINT: http://localhost:3000
