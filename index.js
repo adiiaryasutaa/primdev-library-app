@@ -1,22 +1,13 @@
-import 'dotenv/config'
-import express from 'express'
-import router from './routes/index.routes.js'
-import { ValidationError } from 'express-validation'
+import 'dotenv/config';
+import express from 'express';
+import router from './routes/index.routes.js';
 
-const app = express()
-const port = process.env.PORT || 3000
+const app = express();
+const port = process.env.PORT || 3000;
 
-app.use(express.json())
-app.use(router)
-
-app.use(function (err, req, res, next) {
-  if (err instanceof ValidationError) {
-    return res.status(err.statusCode).json(err)
-  }
-
-  return res.status(500).json(err)
-})
+app.use(express.json());
+app.use(router);
 
 app.listen(port, () => {
-  console.log(`Library API is running url: http://localhost:${port}`)
-})
+  console.log(`Library API is running url: http://localhost:${port}`);
+});

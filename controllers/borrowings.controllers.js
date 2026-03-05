@@ -42,6 +42,12 @@ export const getBorrowingById = async (req, res) => {
 };
 
 export const createBorrowing = async (req, res) => {
+  const validationErrors = validationResult(req);
+
+  if (!validationErrors.isEmpty()) {
+    return res.status(400).json({ errors: validationErrors.array() });
+  }
+
   const { bookId } = req.body;
   const userId = req.user.id;
 

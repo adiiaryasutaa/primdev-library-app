@@ -24,7 +24,10 @@ async function main() {
   const allCategories = await prisma.categories.findMany();
   const catMap = Object.fromEntries(allCategories.map((c) => [c.name, c.id]));
 
-  const userPassword = bcrypt.hash('password', process.env.BCRYPT_SALT_ROUNDS);
+  const userPassword = bcrypt.hash(
+    'password',
+    parseInt(process.env.BCRYPT_SALT_ROUNDS),
+  );
 
   // 2. Users (independent)
   await prisma.users.createMany({

@@ -40,6 +40,12 @@ export const getUserBorrowings = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
+  const validationErrors = validationResult(req);
+
+  if (!validationErrors.isEmpty()) {
+    return res.status(400).json({ errors: validationErrors.array() });
+  }
+
   const { name, email, password, role } = req.body;
 
   try {
@@ -59,6 +65,12 @@ export const createUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
+  const validationErrors = validationResult(req);
+
+  if (!validationErrors.isEmpty()) {
+    return res.status(400).json({ errors: validationErrors.array() });
+  }
+
   const { id } = req.params;
 
   const user = await prisma.users.findUnique({

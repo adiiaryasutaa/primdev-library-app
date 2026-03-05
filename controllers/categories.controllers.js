@@ -1,4 +1,5 @@
 import prisma from '../database/config.database.js';
+import { getFileUrl } from '../helpers/upload.js';
 
 export const getAllCategories = async (req, res) => {
   try {
@@ -26,6 +27,15 @@ export const getBooksByCategory = async (req, res) => {
   try {
     const books = await prisma.books.findMany({
       where: { categoryId: parseInt(id) },
+    });
+
+    // add coverUrl to each book
+    books.forEach((book) => {
+      if (!book.cloudinaryId) {
+        book.coverUrl = null;
+      }
+
+      book.coverUrl = getFileUrl(book.cloudinaryId);
     });
 
     res.json(books);
@@ -58,6 +68,12 @@ export const getCategoryById = async (req, res) => {
 };
 
 export const createCategory = async (req, res) => {
+  const validationErrors = validationResult(req);
+
+  if (!validationErrors.isEmpty()) {
+    return res.status(400).json({ errors: validationErrors.array() });
+  }
+
   const { name } = req.body;
 
   try {
@@ -74,6 +90,12 @@ export const createCategory = async (req, res) => {
 };
 
 export const updateCategory = async (req, res) => {
+  const validationErrors = validationResult(req);
+
+  if (!validationErrors.isEmpty()) {
+    return res.status(400).json({ errors: validationErrors.array() });
+  }
+
   const { id } = req.params;
 
   const category = await prisma.categories.findUnique({

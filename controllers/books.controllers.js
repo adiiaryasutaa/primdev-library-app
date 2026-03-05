@@ -1,4 +1,6 @@
+import { validationResult } from 'express-validator';
 import prisma from '../database/config.database.js';
+import { deleteFile, getFileUrl, uploadFile } from '../helpers/upload.js';
 
 export const getAllBooks = async (req, res) => {
   // /api/books?category=1
@@ -19,6 +21,15 @@ export const getAllBooks = async (req, res) => {
     }
 
     const books = await prisma.books.findMany(where);
+
+    // add coverUrl to each book
+    books.forEach((book) => {
+      if (!book.cloudinaryId) {
+        book.coverUrl = null;
+      }
+
+      book.coverUrl = getFileUrl(book.cloudinaryId);
+    });
 
     res.json(books);
   } catch (error) {
@@ -42,6 +53,12 @@ export const getBookById = async (req, res) => {
       return res.status(404).json({ message: 'Book not found' });
     }
 
+    if (book.cloudinaryId) {
+      book.coverUrl = getFileUrl(book.cloudinaryId);
+    } else {
+      book.coverUrl = null;
+    }
+
     res.json(book);
   } catch (error) {
     res
@@ -51,13 +68,36 @@ export const getBookById = async (req, res) => {
 };
 
 export const createBook = async (req, res) => {
-  const bookData = {};
-  Object.assign(bookData, req.body);
+  const validationErrors = validationResult(req);
+
+  if (!validationErrors.isEmpty()) {
+    return res.status(400).json({ errors: validationErrors.array() });
+  }
+
+  const bookData = {
+    title: req.body.title,
+    author: req.body.author,
+    year: req.body.year,
+  };
+
+  const cover = req.file;
 
   try {
+    if (cover) {
+      const result = await uploadFile(cover);
+
+      bookData.cloudinaryId = result.public_id;
+    }
+
     const book = await prisma.books.create({
       data: bookData,
     });
+
+    if (book.cloudinaryId) {
+      book.coverUrl = getFileUrl(book.cloudinaryId);
+    } else {
+      book.coverUrl = null;
+    }
 
     res.status(201).json({ message: 'Book added', book });
   } catch (error) {
@@ -68,6 +108,12 @@ export const createBook = async (req, res) => {
 };
 
 export const updateBook = async (req, res) => {
+  const validationErrors = validationResult(req);
+
+  if (!validationErrors.isEmpty()) {
+    return res.status(400).json({ errors: validationErrors.array() });
+  }
+
   const { id } = req.params;
 
   // Check is book exists before attempting update
@@ -81,14 +127,34 @@ export const updateBook = async (req, res) => {
     return res.status(404).json({ message: 'Book not found' });
   }
 
-  Object.assign(book, req.body);
+  const bookData = {
+    title: req.body.title,
+    author: req.body.author,
+    year: req.body.year,
+  };
+
+  const cover = req.file;
 
   try {
+    if (cover) {
+      // delete old image if exists
+      if (book.cloudinaryId) {
+        const deleted = await deleteFile(book.cloudinaryId);
+
+        if (deleted.result !== 'ok') {
+          throw new Error('Failed to upload image');
+        }
+      }
+
+      const result = await uploadFile(cover);
+      book.cloudinaryId = result.public_id;
+    }
+
     const updatedBook = await prisma.books.update({
       where: {
         id: parseInt(id),
       },
-      data: book,
+      data: bookData,
     });
 
     if (!updatedBook) {
@@ -118,6 +184,14 @@ export const deleteBook = async (req, res) => {
   }
 
   try {
+    if (book.cloudinaryId) {
+      const deleted = await deleteFile(book.cloudinaryId);
+
+      if (deleted.result !== 'ok') {
+        throw new Error('Failed to delete image');
+      }
+    }
+
     const { error } = await prisma.books.delete({
       where: {
         id: parseInt(id),

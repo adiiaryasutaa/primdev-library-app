@@ -1,37 +1,38 @@
 import { Router } from 'express';
-import { Joi, validate } from 'express-validation';
+import { body } from 'express-validator';
 import {
   createCategory,
+  deleteCategory,
   getAllCategories,
   getBooksByCategory,
   getCategoryById,
   updateCategory,
-  deleteCategory,
 } from '../controllers/categories.controllers.js';
 
 const router = Router();
 
-const categoryValidation = {
-  body: Joi.object({
-    name: Joi.string().required(),
-  }),
-};
+const categoryValidation = [
+  body('name')
+    .isString()
+    .withMessage('Name must be a string')
+    .notEmpty()
+    .withMessage('Name is required'),
+];
 
-const updateCategoryValidation = {
-  body: Joi.object({
-    name: Joi.string().required(),
-  }),
-};
+const updateCategoryValidation = [
+  body('name')
+    .optional()
+    .isString()
+    .withMessage('Name must be a string')
+    .notEmpty()
+    .withMessage('Name is required'),
+];
 
 router.get('/categories', getAllCategories);
 router.get('/categories/:id', getCategoryById);
 router.get('/categories/:id/books', getBooksByCategory);
-router.post('/categories', validate(categoryValidation), createCategory);
-router.put(
-  '/categories/:id',
-  validate(updateCategoryValidation),
-  updateCategory,
-);
+router.post('/categories', categoryValidation, createCategory);
+router.put('/categories/:id', updateCategoryValidation, updateCategory);
 router.delete('/categories/:id', deleteCategory);
 
 export default router;
