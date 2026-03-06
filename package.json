@@ -4,6 +4,7 @@
     "dev": "npx nodemon",
     "start": "node index.js",
     "build": "prisma generate",
+    "postinstall": "prisma generate",
     "vercel-build": "prisma generate" 
   },
   "dependencies": {
