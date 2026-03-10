@@ -112,7 +112,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 router.get('/books', getAllBooks);
-router.get('/books/:id', authenticateToken, getBookById);
+router.get('/books/:id', getBookById);
 router.post(
   '/books',
   authenticateToken,
