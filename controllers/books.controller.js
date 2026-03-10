@@ -1,5 +1,5 @@
 import { validationResult } from 'express-validator';
-import prisma from '../database/config.database.js';
+import prisma from '../configs/database.config.js';
 import { deleteFile, getFileUrl, uploadFile } from '../helpers/upload.js';
 
 export const getAllBooks = async (req, res) => {

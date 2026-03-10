@@ -7,7 +7,7 @@ import {
   getBooksByCategory,
   getCategoryById,
   updateCategory,
-} from '../controllers/categories.controllers.js';
+} from '../controllers/categories.controller.js';
 
 const router = Router();
 

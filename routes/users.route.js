@@ -7,7 +7,7 @@ import {
   getUserBorrowings,
   getUserById,
   updateUser,
-} from '../controllers/users.controllers.js';
+} from '../controllers/users.controller.js';
 
 const router = Router();
 

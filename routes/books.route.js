@@ -6,12 +6,12 @@ import {
   getAllBooks,
   getBookById,
   updateBook,
-} from '../controllers/books.controllers.js';
+} from '../controllers/books.controller.js';
 import multer from 'multer';
 import {
   authenticateToken,
   authorizeAdmin,
-} from '../middlewares/auth.middlewares.js';
+} from '../middlewares/auth.controller.js';
 
 const router = Router();
 

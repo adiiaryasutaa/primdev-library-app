@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import 'dotenv/config.js';
 import { validationResult } from 'express-validator';
-import prisma from '../database/config.database.js';
+import prisma from '../configs/database.config.js';
 import { parse } from 'dotenv';
 
 export const getAllUsers = async (req, res) => {

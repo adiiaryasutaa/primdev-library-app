@@ -5,7 +5,7 @@
     "start": "node index.js",
     "build": "prisma generate",
     "postinstall": "prisma generate",
-    "vercel-build": "prisma generate" 
+    "vercel-build": "prisma generate"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.4.2",
@@ -18,10 +18,10 @@
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.1.1",
     "pg": "^8.19.0",
-    "vercel": "^50.28.0"
+    "vercel": "^32.3.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14",
-    "prisma": "^7.4.2"
+    "prisma": "^6.19.2"
   }
 }

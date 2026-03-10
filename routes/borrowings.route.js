@@ -6,7 +6,7 @@ import {
   getAllBorrowings,
   getBorrowingById,
   returnBook,
-} from '../controllers/borrowings.controllers.js';
+} from '../controllers/borrowings.controller.js';
 
 const router = Router();
 

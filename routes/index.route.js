@@ -1,13 +1,13 @@
 import express from 'express';
-import authRouter from './auth.routes.js';
-import booksRouter from './books.routes.js';
-import usersRouter from './users.routes.js';
-import borrowingsRouter from './borrowings.routes.js';
-import categoriesRouter from './categories.routes.js';
+import authRouter from './auth.route.js';
+import booksRouter from './books.route.js';
+import usersRouter from './users.route.js';
+import borrowingsRouter from './borrowings.route.js';
+import categoriesRouter from './categories.route.js';
 import {
   authenticateToken,
   authorizeAdmin,
-} from '../middlewares/auth.middlewares.js';
+} from '../middlewares/auth.controller.js';
 
 const router = express.Router();
 
